@@ -36,6 +36,7 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume 0 -3%")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume 0 +3%")),
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute 0 toggle")), 
+    Key([], "XF86PowerOff", lazy.spawn("xlock")), 
     #Brillo
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl s 5%+")), 
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl s 5%-")), 
@@ -68,7 +69,8 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    # Toggle between split and unsplit sides of stack.
+    Key([mod], "m", lazy.spawn("xinput disable 11"), desc="toogles the touchpad"),# Toggle between split and unsplit sides of stack.
+    Key([mod,"shift"], "m", lazy.spawn("xinput enable 11"), desc="toogles the touchpad"),# Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
@@ -140,7 +142,7 @@ layouts = [
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
-    # layout.Matrix(),
+    layout.Matrix(),
     layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
